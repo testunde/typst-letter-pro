@@ -279,23 +279,28 @@
 ///
 /// - name (content, none): Name of the sender
 /// - address (content, none): Address of the sender
-#let sender-box(name: none, address) = rect(width: 85mm, height: 5mm, stroke: none, inset: 0pt, {
+#let sender-box(name: none, address, with_underline: true) = rect(width: 85mm, height: 5mm, stroke: none, inset: 0pt, {
   set text(size: 7pt)
   set align(horizon)
 
-  pad(left: 5mm, underline(offset: 2pt, {
-    if name != none {
-      name
-    }
+  pad(left: 5mm, {
+    show text: it => if with_underline {
+      underline(offset: 2pt, it)
+    } else { it }
+    {
+      if name != none {
+        name
+      }
 
-    if (name != none) and (address != none) {
-      ", "
-    }
+      if (name != none) and (address != none) {
+        ", "
+      }
 
-    if address != none {
-      address
+      if address != none {
+        address
+      }
     }
-  }))
+  })
 })
 
 /// Creates a simple annotations box.
@@ -442,6 +447,7 @@
 ///   The name and address fields must be strings (or none).
 ///
 /// - sender-box (function): Draws the sender box above recipent. Set to `sender => none` to disable.
+///   Default set to: `sender => sender-box(name: sender.name, sender.address, with_underline: true)`
 ///
 /// - recipient (content, none): The recipient that will be displayed below the annotations.
 ///
@@ -520,7 +526,7 @@
     address: none,
     extra: none,
   ),
-  sender-box: sender => sender-box(name: sender.name, sender.address),
+  sender-box: sender => sender-box(name: sender.name, sender.address), //, with_underline: true),
   recipient: none,
   stamp: false,
   annotations: none,
