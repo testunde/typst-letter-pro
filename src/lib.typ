@@ -51,6 +51,9 @@
 /// - header (content, none): The header that will be displayed at the top of the first page.
 /// - footer (content, none): The footer that will be displayed at the bottom of the first page. It automatically grows upwords depending on its body. Make sure to leave enough space in the page margins.
 /// 
+/// - letterhead-header (content, none): Custom letterhead header for optional corporate design displayed at the top of every page. Use place() to not affect existing content.
+/// - letterhead-footer (content, none): Custom letterhead footer for optional corporate design displayed at the bottom of every page. Use place() to not affect existing content.
+/// 
 /// - folding-marks (boolean): The folding marks that will be displayed at the left margin.
 /// - hole-mark (boolean): The hole mark that will be displayed at the left margin.
 /// 
@@ -100,6 +103,9 @@
   footer: none,
 
   background: none,
+  
+  letterhead-header: none,
+  letterhead-footer: none,
   
   folding-marks: true,
   hole-mark: true,
@@ -162,7 +168,7 @@
         ))
       }
     },
-    
+    header: letterhead-header,
     footer-descent: 0%,
     footer: context {
       show: pad.with(top: 12pt, bottom: 12pt)
@@ -170,6 +176,7 @@
       let current-page = counter(page).get().first()
       let page-count = counter(page).final().first()
       
+      letterhead-footer
       grid(
         columns: 1fr,
         rows: (0.65em, 1fr),
@@ -434,6 +441,9 @@
 /// - header (auto, content, none): The header that will be displayed at the top of the first page. If header is set to _auto_, a default header will be generaded instead.
 /// - footer (content, none): The footer that will be displayed at the bottom of the first page. It automatically grows upwords depending on its body. Make sure to leave enough space in the page margins.
 /// 
+/// - letterhead-header (content, none): Custom letterhead header for optional corporate design displayed at the top of every page. Use place() to not affect existing content.
+/// - letterhead-footer (content, none): Custom letterhead footer for optional corporate design displayed at the bottom of every page. Use place() to not affect existing content.
+/// 
 /// - folding-marks (boolean): The folding marks that will be displayed at the left margin.
 /// - hole-mark (boolean): The hole mark that will be displayed at the left margin.
 /// 
@@ -499,6 +509,10 @@
 
   background: none,
 
+  
+  letterhead-header: none,
+  letterhead-footer: none,
+  
   folding-marks: true,
   hole-mark: true,
   
@@ -598,6 +612,10 @@
 
     background: background,
 
+    
+    letterhead-header: letterhead-header,
+    letterhead-footer: letterhead-footer,
+    
     folding-marks: folding-marks,
     hole-mark: hole-mark,
     
