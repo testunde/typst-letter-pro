@@ -11,6 +11,7 @@
       E-Mail: #link("mailto:aahlsen@example.com")[aahlsen\@example.com]\
     ],
   ),
+  // sender-box: sender => none,
 
   annotations: [Einschreiben - Rückschein],
   recipient: [

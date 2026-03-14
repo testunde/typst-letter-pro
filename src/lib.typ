@@ -441,6 +441,8 @@
 ///
 ///   The name and address fields must be strings (or none).
 ///
+/// - sender-box (function): Draws the sender box above recipent. Set to `sender => none` to disable.
+///
 /// - recipient (content, none): The recipient that will be displayed below the annotations.
 ///
 /// - stamp (boolean): This will increase the annotations box size is by two lines in order to provide more room for the postage stamp that will be displayed below the sender.
@@ -505,6 +507,7 @@
     address: none,
     extra: none,
   ),
+  sender-box: sender => sender-box(name: sender.name, sender.address),
   recipient: none,
   stamp: false,
   annotations: none,
@@ -571,7 +574,7 @@
     )
   }
 
-  let sender-box = sender-box(name: sender.name, sender.address)
+  let sender-box = sender-box(sender)
   let annotations-box = annotations-box(annotations)
   let recipient-box = recipient-box(recipient)
 
