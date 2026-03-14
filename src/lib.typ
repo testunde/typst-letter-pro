@@ -459,7 +459,9 @@
 ///   )
 ///   ```
 ///
-/// - date (content, auto, none): The date that will be displayed on the right below the subject.
+/// - location (string, none): The location will displayed on the right below the subject. (together with date)
+///
+/// - date (content, auto, none): The date that will be displayed on the right below the subject. (together with location)
 ///
 ///   If this is `auto`, the current date is shown. If `auto` or a value of type `datetime`
 ///   is provided, the date will be formatted with `date-format`.
@@ -524,6 +526,7 @@
   annotations: none,
   information-box: none,
   reference-signs: none,
+  location: none,
   date: auto,
   date-format: auto,
   subject: none,
@@ -652,9 +655,17 @@
     page-numbering: page-numbering,
 
     {
-      // Add the date line, if any.
-      if date != none {
-        align(right, date)
+      // Add the location+date line, if any.
+      if date != none or location != none {
+        align(
+          right,
+          {
+            let ret = ()
+            if location != none { ret.push(location) }
+            if date != none { ret.push(date) }
+            ret
+          }.join(", "),
+        )
         v(0.65em)
       }
 
