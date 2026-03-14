@@ -559,10 +559,10 @@
     header = pad(
       left:   margin.left,
       right:  margin.right,
-      top:    margin.top,
+      top:    letter-formats.at(format).header-size + 5mm,
       bottom: 5mm,
       
-      align(bottom + right, header-simple(
+      align(top + right, header-simple(
         sender.name,
         if sender.address != none {
           sender.address.split(", ").join(linebreak())
