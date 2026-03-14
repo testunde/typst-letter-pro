@@ -434,12 +434,15 @@
 ///   )
 ///
 /// - header (auto, content, none): The header that will be displayed at the top of the first page. If header is set to _auto_, a default header will be generaded instead.
+///
 /// - footer (content, none): The footer that will be displayed at the bottom of the first page. It automatically grows upwords depending on its body. Make sure to leave enough space in the page margins.
 ///
 /// - letterhead-header (content, none): Custom letterhead header for optional corporate design displayed at the top of every page. Use place() to not affect existing content.
+///
 /// - letterhead-footer (content, none): Custom letterhead footer for optional corporate design displayed at the bottom of every page. Use place() to not affect existing content.
 ///
 /// - folding-marks (boolean): The folding marks that will be displayed at the left margin.
+///
 /// - hole-mark (boolean): The hole mark that will be displayed at the left margin.
 ///
 /// - sender (dictionary): The sender that will be displayed below the header on the left.
@@ -452,9 +455,11 @@
 /// - recipient (content, none): The recipient that will be displayed below the annotations.
 ///
 /// - stamp (boolean): This will increase the annotations box size is by two lines in order to provide more room for the postage stamp that will be displayed below the sender.
+///
 /// - annotations (content, none): The annotations box that will be displayed below the sender (or the stamp if enabled).
 ///
 /// - information-box (content, none): The information box that will be displayed below below the header on the right.
+///
 /// - reference-signs (array, none): The reference signs that will be displayed below below the the address box. The array has to be a collection of tuples with 2 content elements.
 ///
 ///   Example:
