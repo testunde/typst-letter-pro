@@ -47,6 +47,7 @@ Anbei erhalten Sie eine Kopie der Rechnung des Gerätes.
 
 Mit freundlichen Grüßen
 #v(1cm)
+// #v(-1.2em / 2)#image("signature.pdf", height: 1cm)#v(-1.2em / 2)
 Anja Ahlsen
 
 #v(1fr)
