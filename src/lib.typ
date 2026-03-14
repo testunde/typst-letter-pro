@@ -516,7 +516,7 @@
   information-box: none,
   reference-signs: none,
   
-  date: none,
+  date: auto,
   subject: none,
 
   page-numbering: auto,
@@ -540,16 +540,25 @@
   )
   
   // Configure page and text properties.
-  if sender.name != none {
-    set document(
-      title: subject,
-      author: sender.name
-    )
+  if subject != none {
+    set document(title: subject)
+  } else {
+    subject = context document.title;
   }
-  else {
-    set document(
-      title: subject,
-    )
+  if sender.at("name", default: none) != none {
+    set document(author: sender.name)
+  } else {
+    sender.name = context document.author.at(0);
+  }
+  if date == auto {
+     date = context {
+      let format = "[day padding:none]. [month repr:long] [year]"
+      if document.date == auto {
+        datetime.today().display(format)
+      } else {
+        document.date.display(format)
+      }
+    }
   }
 
   set text(font: font, hyphenate: false)
