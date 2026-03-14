@@ -607,8 +607,10 @@
       } else {
         date
       }.display(format)
-      for (m_en, m_de) in month-map-en-de {
-        date_str = date_str.replace(m_en, m_de)
+      if text.lang == "de" {
+        for (m_en, m_de) in month-map-en-de {
+          date_str = date_str.replace(m_en, m_de)
+        }
       }
       date_str
     }
