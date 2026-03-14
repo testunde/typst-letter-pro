@@ -69,6 +69,8 @@
 ///   )
 ///   ```
 ///
+/// - reduce-space-after-ref-signs (boolean): Reduces extra vertical space added due to reference signs line as much as possible
+///
 /// - page-numbering (auto, string, function, none): Defines the format of the page numbers.
 ///   #table(
 ///     columns: (auto, 1fr),
@@ -107,6 +109,7 @@
   address-box: none,
   information-box: none,
   reference-signs: none,
+  reduce-space-after-ref-signs: false,
   page-numbering: auto,
   margin: (
     left: 25mm,
@@ -225,22 +228,25 @@
 
   // Reference signs
   if (reference-signs != none) and (reference-signs.len() > 0) {
-    grid(
-      // Total width: 175mm
-      // Delimiter: 4.23mm
-      // Cell width: 50mm - 4.23mm = 45.77mm
+    block(
+      height: if reduce-space-after-ref-signs { 0pt } else { auto },
+      grid(
+        // Total width: 175mm
+        // Delimiter: 4.23mm
+        // Cell width: 50mm - 4.23mm = 45.77mm
 
-      columns: (45.77mm, 45.77mm, 45.77mm, 25mm),
-      rows: 12pt * 2,
-      gutter: 12pt,
+        columns: (45.77mm, 45.77mm, 45.77mm, 25mm),
+        rows: 12pt * 2,
+        gutter: 12pt,
 
-      ..reference-signs.map(sign => {
-        let (key, value) = sign
+        ..reference-signs.map(sign => {
+          let (key, value) = sign
 
-        text(size: 8pt, key)
-        linebreak()
-        text(size: 10pt, value)
-      })
+          text(size: 8pt, key)
+          linebreak()
+          text(size: 10pt, value)
+        })
+      ),
     )
   }
 
@@ -470,6 +476,8 @@
 ///   )
 ///   ```
 ///
+/// - reduce-space-after-ref-signs (boolean): Reduces extra vertical space added due to reference signs line as much as possible
+///
 /// - location (string, none): The location will displayed on the right below the subject. (together with date)
 ///
 /// - date (content, auto, none): The date that will be displayed on the right below the subject. (together with location)
@@ -537,6 +545,7 @@
   annotations: none,
   information-box: none,
   reference-signs: none,
+  reduce-space-after-ref-signs: false,
   location: none,
   date: auto,
   date-format: auto,
@@ -664,6 +673,7 @@
     information-box: information-box,
 
     reference-signs: reference-signs,
+    reduce-space-after-ref-signs: reduce-space-after-ref-signs,
 
     page-numbering: page-numbering,
 
