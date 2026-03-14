@@ -11,7 +11,7 @@
       E-Mail: #link("mailto:aahlsen@example.com")[aahlsen\@example.com]\
     ],
   ),
-  
+
   annotations: [Einschreiben - Rückschein],
   recipient: [
     Finanzamt Frankfurt\
@@ -19,11 +19,11 @@
     Gutleutstraße 5\
     60329 Frankfurt
   ],
-  
+
   reference-signs: (
     ([Steuernummer], [333/24692/5775]),
   ),
-  
+
   date: "12. November 2014",
   subject: "Einspruch gegen den ESt-Bescheid",
 )

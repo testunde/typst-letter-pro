@@ -1,4 +1,4 @@
-#import "/src/lib.typ": letter-generic, address-tribox
+#import "/src/lib.typ": address-tribox, letter-generic
 
 #let fbox(color, content) = rect(width: 100%, height: 100%, inset: 3pt, fill: color)[
   #align(center + horizon)[
@@ -14,7 +14,7 @@
   footer: fbox(yellow, "footer"),
 
   address-box: fbox(gray, "address-box"),
-  
+
   information-box: fbox(navy, "information-box"),
 
   reference-signs: (
@@ -26,10 +26,10 @@
   ),
 
   page-numbering: (x, y) => "Page " + text(fill: eastern)[current-page] + " of " + text(fill: fuchsia)[page-count],
-  
+
   margin: (
     bottom: 3cm,
-  )
+  ),
 )
 
 #lorem(1000)

@@ -23,24 +23,24 @@
       grid(
         columns: (auto, 1fr, auto),
         gutter: 0.65em,
-  
+
         [_typst-letter-pro_],
-        
+
         rect(
           radius: 2pt,
           inset: 2pt,
           fill: blue.lighten(70%),
-          
+
           text(6pt)[
             #set align(center + horizon)
             Version #project-version
-          ]
+          ],
         ),
-        
+
         numbering("1", current-page),
       )
     }
-  }
+  },
 )
 
 #show raw.where(block: true): block.with(
@@ -62,20 +62,20 @@
   #stack(
     dir: ltr,
     spacing: 0.65em,
-    
+
     rect(
       radius: 5pt,
       fill: blue.lighten(70%),
-      
-      text(12pt)[Version #project-version]
+
+      text(12pt)[Version #project-version],
     ),
-    
+
     rect(
       radius: 5pt,
       fill: orange.lighten(70%),
-      
-      text(12pt)[MIT license]
-    )
+
+      text(12pt)[MIT license],
+    ),
   )
 
   _by #(project-authors)_
@@ -98,8 +98,8 @@
     radius: 10pt,
     inset: 15pt,
     fill: gray.lighten(90%),
-    
-    outline(depth: 2, indent: 0.65em * 2)
+
+    outline(depth: 2, indent: 0.65em * 2),
   )
 ]
 
@@ -127,7 +127,7 @@ The goal of typst-letter-pro is to simplify the process of creating business let
       E-Mail: #link("mailto:aahlsen@example.com")[aahlsen\@example.com]\
     ],
   ),
-  
+
   annotations: [Einschreiben - Rückschein],
   recipient: [
     Finanzamt Frankfurt\
@@ -135,11 +135,11 @@ The goal of typst-letter-pro is to simplify the process of creating business let
     Gutleutstraße 5\
     60329 Frankfurt
   ],
-  
+
   reference-signs: (
     ([Steuernummer], [333/24692/5775]),
   ),
-  
+
   date: "12. November 2014",
   subject: "Einspruch gegen den ESt-Bescheid",
 )
@@ -207,10 +207,10 @@ Note: This *ONLY* works with stamps of the format "DIN A4 Normalpapier (Einlegeb
       bottom: 7pt,
       rest: 0pt,
     ),
-    
-    text(size: 22pt, style: "italic", it.body)
+
+    text(size: 22pt, style: "italic", it.body),
   )
-  
+
   parbreak()
   v(0.65em)
 }
@@ -218,28 +218,26 @@ Note: This *ONLY* works with stamps of the format "DIN A4 Normalpapier (Einlegeb
 #show heading.where(level: 3): rect.with(
   width: 100%,
   stroke: 0.5pt,
-  fill: gray.lighten(85%)
+  fill: gray.lighten(85%),
 )
 
 #let module = tidy.parse-module(read("/src/lib.typ"))
 #tidy.show-module(
   module,
   first-heading-level: 1,
-  
+
   show-outline: true,
-  
+
   sort-functions: it => {
     (
-      "letter-simple":  11,
+      "letter-simple": 11,
       "letter-generic": 12,
-      
-      "header-simple":   21,
-      "sender-box":      22,
+      "header-simple": 21,
+      "sender-box": 22,
       "annotations-box": 23,
-      "recipient-box":   24,
-      "address-duobox":  25,
-      "address-tribox":  26,
-      
+      "recipient-box": 24,
+      "address-duobox": 25,
+      "address-tribox": 26,
     ).at(it.name, default: 99)
-  }
+  },
 )
