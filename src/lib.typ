@@ -459,7 +459,18 @@
 ///   )
 ///   ```
 ///
-/// - date (content, none): The date that will be displayed on the right below the subject.
+/// - date (content, auto, none): The date that will be displayed on the right below the subject.
+///
+///   If this is `auto`, the current date is shown. If `auto` or a value of type `datetime`
+///   is provided, the date will be formatted with `date-format`.
+///   The pattern passed to `datetime.display()` is determined as follows:
+///   * if `text.lang = "de"`: `"[day].[month].[year]"`
+///   * if `text.lang = "en"`: `"[month repr:long] [day padding:none], [year]"`
+///   * otherwise: `auto`
+///   -> auto | datetime | content
+///
+/// -> auto | str
+///
 /// - subject (string, none): The subject line and the document title.
 ///
 /// - page-numbering (auto, string, function, none): Defines the format of the page numbers.
@@ -514,6 +525,7 @@
   information-box: none,
   reference-signs: none,
   date: auto,
+  date-format: auto,
   subject: none,
   page-numbering: auto,
   margin: (
@@ -543,14 +555,48 @@
   } else {
     sender.name = context document.author.at(0)
   }
-  if date == auto {
+  let month-map-en-de = (
+    "January": "Januar",
+    "February": "Februar",
+    "March": "März",
+    "April": "April",
+    "May": "Mai",
+    "June": "Juni",
+    "July": "Juli",
+    "August": "August",
+    "September": "September",
+    "October": "Oktober",
+    "November": "November",
+    "December": "Dezember",
+  )
+  let date-localization = (
+    "de": (
+      date-format: "[day padding:none]. [month repr:long] [year]", //"[day].[month].[year]",
+    ),
+    "en": (
+      date-format: "[month repr:long] [day padding:none], [year]",
+    ),
+  )
+  let date-localization-fallback = (
+    date-format: auto,
+  )
+  let date-localized() = date-localization.at(text.lang, default: date-localization-fallback)
+  if date == auto or type(date) == datetime {
     date = context {
-      let format = "[day padding:none]. [month repr:long] [year]"
-      if document.date == auto {
-        datetime.today().display(format)
+      let format = date-localized().date-format
+      let date_str = if date == auto {
+        if document.date == auto {
+          datetime.today()
+        } else {
+          document.date
+        }
       } else {
-        document.date.display(format)
+        date
+      }.display(format)
+      for (m_en, m_de) in month-map-en-de {
+        date_str = date_str.replace(m_en, m_de)
       }
+      date_str
     }
   }
 

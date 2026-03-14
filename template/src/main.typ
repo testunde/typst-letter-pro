@@ -25,7 +25,9 @@
     ([Steuernummer], [333/24692/5775]),
   ),
 
-  date: "12. November 2014",
+  // date: "12. November 2014",
+  date: datetime(day: 12, month: 11, year: 2014),
+  // date: auto, // == today
   subject: "Einspruch gegen den ESt-Bescheid",
 )
 
