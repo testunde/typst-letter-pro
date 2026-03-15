@@ -424,7 +424,7 @@
 
 /// This function takes your whole document as its `body` and formats it as a simple letter.
 ///
-/// The default font is set to _Source Sans Pro_ without hyphenation. The body text will be justified.
+/// The default font is set to _Source Sans Pro_ with hyphenation. The body text will be justified.
 ///
 /// - format (string): The format of the letter, which decides the position of the folding marks and the size of the header.
 ///   #table(
@@ -523,6 +523,10 @@
 ///   Keep in mind that some fonts may not be ideal for automated letter processing software
 ///   and #link("https://en.wikipedia.org/wiki/Optical_character_recognition", text(blue)[OCR]) may fail.
 ///
+/// - body-hyphenate (boolean): controls hyphenation for the body text
+///
+/// - body-justify (boolean): controls justification for the body text
+///
 /// - body (content, none): The content of the letter
 /// -> content
 #let letter-simple(
@@ -558,6 +562,8 @@
     bottom: 20mm,
   ),
   font: "Source Sans Pro",
+  body-hyphenate: true,
+  body-justify: true,
   body,
 ) = {
   margin = (
@@ -625,7 +631,7 @@
     }
   }
 
-  set text(font: font, hyphenate: false)
+  set text(font: font, hyphenate: body-hyphenate)
 
   // Create a simple header if there is none
   if header == auto {
@@ -698,7 +704,7 @@
         v(0.65em)
       }
 
-      set par(justify: true)
+      set par(justify: body-justify)
       body
     },
 
