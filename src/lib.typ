@@ -686,6 +686,7 @@
     {
       // Add the location+date line, if any.
       if date != none or location != none {
+        set text(size: if reduce-space-after-ref-signs { 10pt } else { 1em }) // only sync size with remaining template headers when the space is reduced, result them to be at equal height
         align(
           right,
           {
